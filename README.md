@@ -25,6 +25,7 @@
 ## 🏗 담당 영역
 
 ### DB부 — 공간 데이터베이스 설계
+- 로컬 파일 DB(SQLite)에서 **Supabase 클라우드 PostgreSQL**로 마이그레이션 — 다중 접속·확장성 확보 (SQLAlchemy 직접 연결)
 - PostgreSQL의 공간 확장 모듈 **PostGIS**로 장소 좌표를 Geography 타입으로 저장
 - 전수비교(`ST_Distance`) 방식을 **GiST 공간 인덱스 기반 `ST_DWithin`**으로 전환하여 반경 탐색 성능 개선
 - 대량 수집 데이터의 반복 DB 접속 부하를 줄이기 위한 **배치 Bulk Upsert + TTL(180일) 캐시 정책** 설계
@@ -38,7 +39,7 @@
 
 ## 🛠 기술 스택
 
-**Backend**: Python, FastAPI, PostgreSQL, PostGIS, SQLAlchemy, Alembic
+**Backend**: Python, FastAPI, PostgreSQL(Supabase 클라우드), PostGIS, SQLAlchemy, Alembic
 
 **Frontend**: Next.js, TypeScript
 
