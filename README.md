@@ -39,8 +39,11 @@
 ## 🛠 기술 스택
 
 **Backend**: Python, FastAPI, PostgreSQL, PostGIS, SQLAlchemy, Alembic
+
 **Frontend**: Next.js, TypeScript
+
 **외부 API**: Duffel(항공), LiteAPI(숙소), Resend(이메일)
+
 **설계 기법**: GiST 공간 인덱스, Saga 패턴(보상 트랜잭션), 비동기 병렬 처리(asyncio)
 
 ---
