@@ -11,7 +11,7 @@ GiST 공간 인덱스 실측 벤치마크 — 100만 건 규모
   3) python benchmark_gist.py
      (다른 DB를 쓰려면: python benchmark_gist.py --dsn "postgresql://user:pw@host:port/db")
 
-출력: 각 방식의 실행 시간(5개 지점 x 3회, 중앙값)과 이력서용 요약 문구.
+출력: 각 방식의 실행 시간(5개 지점 x 3회, 중앙값) 요약.
 결과 파일: benchmark_result.md
 """
 import argparse
@@ -116,8 +116,6 @@ def main():
 
 **개선 배율: 약 {speedup:,.0f}배 ({med_a:.2f}초 → {med_b:.3f}초)**
 
-이력서용 문구(실측):
-"합성 데이터 100만 건 실측 기준, 반경 탐색 {med_a:.1f}초 → {med_b:.3f}초(약 {speedup:,.0f}배) 개선"
 """
     with open("benchmark_result.md", "w", encoding="utf-8") as f:
         f.write(report)
