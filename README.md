@@ -4,6 +4,8 @@
 
 이 저장소는 시스템 전체 중 **DB부**(공간 데이터베이스 설계)와 **예약부**(분산 예약 파이프라인) 두 서브시스템을 담당한 캡스톤 설계 프로젝트입니다.
 
+> 🔗 배포: https://pick-and-go-tau.vercel.app
+
 > 📄 프로젝트 전체 설계 및 검증 과정은 [`docs/thesis_chapter1_intro.md`](docs/thesis_chapter1_intro.md) ~ [`thesis_chapter9_conclusion.md`](docs/thesis_chapter9_conclusion.md)에서 장별로 확인하실 수 있습니다.
 
 ---
@@ -18,7 +20,8 @@
 | 처리 최적화 | 이동 시간 계산을 외부 지도 API 반복 호출 대신 **Haversine 공식**으로 대체, 대량 수집은 **배치 Bulk Upsert**로 DB I/O 절감 |
 | 검증 | 예약 파이프라인 **E2E 6개 시나리오(TC-E2E-01~06)** — 정상 흐름·부분 실패 롤백·확정 실패·저장 실패·타임아웃·이메일 발송 3-way 검증 |
 
-> 모든 성능 수치는 실측값입니다. 100만 건 벤치마크: 스크립트 `tests/benchmark_gist.py`, 결과 `docs/benchmark_result.md` (PostgreSQL 16.4/Docker, 반경 3km, 기준 좌표 5개×3회 중앙값)
+> 모든 성능 수치는 실측값입니다. 100만 건 벤치마크: [스크립트](tests/benchmark_gist.py) · [결과](docs/benchmark_result.md) (PostgreSQL 16.4/Docker, 반경 3km, 기준 좌표 5개×3회 중앙값)
+
 ---
 
 ## 🏗 담당 영역
@@ -71,6 +74,7 @@ scripts/             데이터 수집 및 마이그레이션 스크립트
 - 성능 벤치마크 그래프: [`docs/figure9_performance_graph.png`](docs/figure9_performance_graph.png)
 - Saga 패턴 흐름도: [`docs/figure5_saga_flowchart.png`](docs/figure5_saga_flowchart.png)
 - 개발 기여 가이드: [`CONTRIBUTING.md`](CONTRIBUTING.md)
+- 100만 건 실측 벤치마크: [`tests/benchmark_gist.py`](tests/benchmark_gist.py) · [`docs/benchmark_result.md`](docs/benchmark_result.md)
 
 ---
 
