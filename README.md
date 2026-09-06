@@ -21,8 +21,11 @@
 | 검증 | 예약 파이프라인 **E2E 6개 시나리오(TC-E2E-01~06)** — 정상 흐름·부분 실패 롤백·확정 실패·저장 실패·타임아웃·이메일 발송 3-way 검증 |
 
 > 성능 수치: 100만 건 구간은 직접 작성한 벤치마크 스크립트([`tests/benchmark_gist.py`](tests/benchmark_gist.py))로 **실측**했습니다.
+
 > 측정 조건 — Docker / PostgreSQL 16.4 + PostGIS, 합성 데이터 1,000,000행, 반경 3km, 서로 다른 좌표 5개 × 3회 반복의 중앙값.
+
 > 초기 문서의 복잡도 기반 추정값을 실측값으로 대체했습니다. 상세는 [`docs/thesis_chapter4_gist_optimization.md`](docs/thesis_chapter4_gist_optimization.md) 참조.
+
 ---
 
 ## 🏗 담당 영역
@@ -76,6 +79,16 @@ scripts/             데이터 수집 및 마이그레이션 스크립트
 - Saga 패턴 흐름도: [`docs/figure5_saga_flowchart.png`](docs/figure5_saga_flowchart.png)
 - 개발 기여 가이드: [`CONTRIBUTING.md`](CONTRIBUTING.md)
 - 100만 건 실측 벤치마크: [`tests/benchmark_gist.py`](tests/benchmark_gist.py) · [`docs/benchmark_result.md`](docs/benchmark_result.md)
+
+---
+
+## ⚠️ 한계와 남은 과제
+
+[#-한계와-남은-과제](#-한계와-남은-과제)
+
+- **쓰기 성능·동시 접속 미검증** — 인덱스는 조회를 빠르게 하는 대신 데이터 추가·수정 비용을 늘립니다. 이번 측정은 조회에 한정되어, 쓰기 성능 저하와 다중 접속 환경의 영향은 확인하지 못했습니다.
+- **보상 트랜잭션 자체의 실패** — 롤백을 시도하는 요청도 실패할 수 있으나 현재는 로그로만 남습니다. 멱등성을 보장한 재시도와 수동 처리 대기열이 다음 보완 지점입니다.
+- **운영 관측 체계 부재** — 배포는 자동화했지만 로그 수집과 장애 알림이 없어, 문제가 생겨도 사용자 신고 전에는 알기 어렵습니다.
 
 ---
 
